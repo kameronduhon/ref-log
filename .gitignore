@@ -1,0 +1,11 @@
+# Byte-compiled / cache files
+__pycache__/
+*.pyc
+
+# Data files
+games.csv
+
+# Virtual environment (if you use one)
+venv/
+.env/
+
