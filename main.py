@@ -21,10 +21,45 @@ def add_game():
         writer = csv.writer(file)
         writer.writerow([date, teams, level, pay])
 
-    print("Game added successfully!")
+    print("✅ Game added successfully!")
+
+
+def view_games():
+    """Display all logged games."""
+    with open(FILENAME, mode="r") as file:
+        reader = csv.reader(file)
+        next(reader)  # skip header
+        games = list(reader)
+
+    if not games:
+        print("No games logged yet.")
+    else:
+        print("\nYour Games:")
+        for game in games:
+            print(f"- {game[0]} | {game[1]} | {game[2]} | ${game[3]}")
+
+
+def menu():
+    """Main menu loop."""
+    while True:
+        print("\nRef Log Menu")
+        print("1. Add a game")
+        print("2. View games")
+        print("3. Exit")
+
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            add_game()
+        elif choice == "2":
+            view_games()
+        elif choice == "3":
+            print("Goodbye! 👋")
+            break
+        else:
+            print("❌ Invalid choice, try again.")
 
 
 if __name__ == "__main__":
-    # For now, just test adding one game
-    add_game()
+    menu()
 
