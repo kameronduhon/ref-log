@@ -39,13 +39,35 @@ def view_games():
             print(f"- {game[0]} | {game[1]} | {game[2]} | ${game[3]}")
 
 
+def summary():
+    """Show total games, total pay, and average pay."""
+    with open(FILENAME, mode="r") as file:
+        reader = csv.reader(file)
+        next(reader)  # skip header
+        games = list(reader)
+
+    if not games:
+        print("No games logged yet.")
+        return
+
+    total_games = len(games)
+    total_pay = sum(float(game[3]) for game in games)
+    average_pay = total_pay / total_games
+
+    print("\n📊 Summary:")
+    print(f"Total games: {total_games}")
+    print(f"Total pay: ${total_pay:.2f}")
+    print(f"Average per game: ${average_pay:.2f}")
+
+
 def menu():
     """Main menu loop."""
     while True:
         print("\nRef Log Menu")
         print("1. Add a game")
         print("2. View games")
-        print("3. Exit")
+        print("3. View summary")
+        print("4. Exit")
 
         choice = input("Choose an option: ")
 
@@ -54,6 +76,8 @@ def menu():
         elif choice == "2":
             view_games()
         elif choice == "3":
+            summary()
+        elif choice == "4":
             print("Goodbye! 👋")
             break
         else:
