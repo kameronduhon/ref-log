@@ -141,7 +141,7 @@ def menu():
             print("Goodbye! 👋")
             break
         else:
-            print("❌ Invalid choice, try again.")
+            print("❌ Invalid choice, please try again.")
 
 
 if __name__ == "__main__":
